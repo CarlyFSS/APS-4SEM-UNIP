@@ -3,6 +3,8 @@ package app;
 import java.io.IOException;
 import java.util.Scanner;
 
+import app.utils.RandomNumberGenerator;
+
 public class App {
     public static void main(String[] args) throws Exception {
         System.out.println("Welcome to sort algorithm measure");
@@ -14,6 +16,7 @@ public class App {
         // Variables
         int option = 0;
         Scanner scn = new Scanner(System.in);
+        int[] arr = {};
         // ----------
 
         // Main loop
@@ -25,11 +28,10 @@ public class App {
             switch (option) {
             case 1:
                 clearScreen();
-                System.out.println("Option 1");
+                arr = showGenMenu(scn);
                 break;
             case 2:
                 clearScreen();
-                System.out.println("Option 2");
                 break;
             case 3:
                 option = 3;
@@ -46,9 +48,36 @@ public class App {
 
     public static void showMainMenu() {
         System.out.println("\n\nWhat do you want to do?");
-        System.out.println("1 - Generate number file");
+        System.out.println("1 - Generate number array");
         System.out.println("2 - Test sort algorithms");
         System.out.println("3 - Exit");
+    }
+
+    public static int[] showGenMenu(Scanner scanner) {
+        int[] arr;
+        int max;
+        int min;
+        int size;
+
+        System.out.print("Type the maximum value you want in the array: ");
+        max = scanner.nextInt();
+
+        System.out.print("\n");
+
+        System.out.print("Type the minimum value you want in the array: ");
+        min = scanner.nextInt();
+
+        System.out.print("\n");
+
+        System.out.print("Type the size of the array: ");
+        size = scanner.nextInt();
+
+        System.out.print("\n\n Generating array...");
+        arr = generateNumberArray(size, max, min);
+        System.out.print("\n\n Array generated!");
+
+        clearScreen();
+        return arr;
     }
 
     public static int getUserOption(Scanner scanner) throws IOException {
@@ -68,5 +97,11 @@ public class App {
         for (int i = 0; i < 30; i++) {
             System.out.println("\n");
         }
+    }
+
+    public static int[] generateNumberArray(int size, int max, int min) {
+        RandomNumberGenerator rng = new RandomNumberGenerator();
+
+        return rng.genRandomNumberArray(size, min, max);
     }
 }
