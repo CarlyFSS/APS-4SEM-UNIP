@@ -3,6 +3,7 @@ package app;
 import java.io.IOException;
 import java.util.Scanner;
 
+import app.utils.BubbleSort;
 import app.utils.RandomNumberGenerator;
 
 public class App {
@@ -20,7 +21,7 @@ public class App {
         // ----------
 
         // Main loop
-        while (option != 3) {
+        while (option != 4) {
             showMainMenu();
 
             option = getUserOption(scn);
@@ -32,9 +33,29 @@ public class App {
                 break;
             case 2:
                 clearScreen();
+                arr = BubbleSort.sort(arr);
+                // Show results
+                /*
+                 * Data amount: Arr.length()
+                 * 
+                 * -------- Time results --------
+                 * 
+                 * Bubble Sort: 5 second(s)
+                 * 
+                 * Merge Sort: 3 second(s)
+                 * 
+                 * Selection Sort: 4 second(s)
+                 * 
+                 * Press any key to continue...
+                 * 
+                 */
                 break;
             case 3:
-                option = 3;
+                clearScreen();
+                showArray(arr);
+                break;
+            case 4:
+                option = 4;
                 break;
             default:
                 System.out.println("Invalid option!!");
@@ -50,7 +71,15 @@ public class App {
         System.out.println("\n\nWhat do you want to do?");
         System.out.println("1 - Generate number array");
         System.out.println("2 - Test sort algorithms");
-        System.out.println("3 - Exit");
+        System.out.println("3 - Show Array");
+        System.out.println("4 - Exit");
+    }
+
+    public static void showArray(int arr[]) {
+        System.out.print("[");
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(i == arr.length - 1 ? arr[i] + "]" : arr[i] + ", ");
+        }
     }
 
     public static int[] showGenMenu(Scanner scanner) {
