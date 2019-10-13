@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import app.utils.BubbleSort;
 import app.utils.RandomNumberGenerator;
+import app.utils.TimeCounter;
 
 public class App {
     public static void main(String[] args) throws Exception {
@@ -15,50 +16,34 @@ public class App {
         System.out.println("- Selection Sort");
 
         // Variables
-        int option = 0;
-        Scanner scn = new Scanner(System.in);
+        int option = 5;
+        Scanner scanner = new Scanner(System.in);
         int[] arr = {};
+
         // ----------
 
         // Main loop
         while (option != 4) {
-            showMainMenu();
-
-            option = getUserOption(scn);
+            option = getUserOption(scanner);
 
             switch (option) {
             case 1:
                 clearScreen();
-                arr = showGenMenu(scn);
+                arr = showGenMenu(scanner);
                 break;
             case 2:
                 clearScreen();
-                arr = BubbleSort.sort(arr);
-                // Show results
-                /*
-                 * Data amount: Arr.length()
-                 * 
-                 * -------- Time results --------
-                 * 
-                 * Bubble Sort: 5 second(s)
-                 * 
-                 * Merge Sort: 3 second(s)
-                 * 
-                 * Selection Sort: 4 second(s)
-                 * 
-                 * Press any key to continue...
-                 * 
-                 */
+                showSortResult(arr, scanner);
                 break;
             case 3:
                 clearScreen();
                 showArray(arr);
                 break;
             case 4:
+                scanner.close();
                 option = 4;
                 break;
             default:
-                System.out.println("Invalid option!!");
                 break;
             }
         }
@@ -66,6 +51,51 @@ public class App {
     }
 
     // Functions
+
+    public static void showSortResult(int[] arr, Scanner scanner) {
+        clearScreen();
+        System.out.println("Data amount: " + arr.length);
+        System.out.println("\n");
+        System.out.println("-------- Time results --------");
+        System.out.println("\n");
+        System.out.println("Bubble Sort   : " + runBubbleSortAndGetTime(arr));
+        System.out.println("Merge Sort    : " + runSelectionSortAndGetTime(arr));
+        System.out.println("Selection Sort: " + runMergeSortAndGetTime(arr));
+        System.out.println("\n\n");
+        System.out.println("Press any key to continue...");
+        scanner.nextLine();
+        scanner.nextLine();
+    }
+
+    public static long runBubbleSortAndGetTime(int[] arr) {
+        TimeCounter timeCounter = new TimeCounter();
+
+        timeCounter.startCounter();
+        arr = BubbleSort.sort(arr);
+        timeCounter.stopCounter();
+
+        return timeCounter.calculateElapsedTimeInSeconds();
+    }
+
+    public static long runSelectionSortAndGetTime(int[] arr) {
+        TimeCounter timeCounter = new TimeCounter();
+
+        timeCounter.startCounter();
+        // arr = SelectionSort.sort(arr);
+        timeCounter.stopCounter();
+
+        return timeCounter.calculateElapsedTimeInSeconds();
+    }
+
+    public static long runMergeSortAndGetTime(int[] arr) {
+        TimeCounter timeCounter = new TimeCounter();
+
+        timeCounter.startCounter();
+        // arr = MergeSort.sort(arr);
+        timeCounter.stopCounter();
+
+        return timeCounter.calculateElapsedTimeInSeconds();
+    }
 
     public static void showMainMenu() {
         System.out.println("\n\nWhat do you want to do?");
@@ -83,23 +113,78 @@ public class App {
     }
 
     public static int[] showGenMenu(Scanner scanner) {
-        int[] arr;
-        int max;
-        int min;
-        int size;
+        // Treat all errors in inputs
+        int[] arr = {};
+        int max = 0;
+        int min = 0;
+        int size = 0;
+        boolean proceed = false;
 
-        System.out.print("Type the maximum value you want in the array: ");
-        max = scanner.nextInt();
+        while (proceed != true) {
+            try {
+                System.out.print("Type the maximum value you want in the array: ");
+                max = scanner.nextInt();
+                clearScreen();
+                proceed = true;
+            } catch (Exception e) {
+                System.out.println("Value must be a number!!");
+                System.out.println("\n Press any key to continue...");
+                scanner.nextLine();
+                scanner.nextLine();
+                clearScreen();
+                proceed = false;
+            }
+        }
 
+        proceed = false;
         System.out.print("\n");
 
-        System.out.print("Type the minimum value you want in the array: ");
-        min = scanner.nextInt();
+        while (proceed != true) {
+            try {
+                System.out.print("Type the maximum value you want in the array: " + max + "\n");
+                System.out.print("Type the minimum value you want in the array: ");
+                min = scanner.nextInt();
+                clearScreen();
 
+                if (min > max) {
+                    throw new Exception("\nMinimum value must be higher than maximum value!\n");
+                }
+
+                proceed = true;
+            } catch (Exception e) {
+                if (e.getMessage() != null) {
+                    System.out.println(e.getMessage());
+                } else {
+                    System.out.println("Value must be a number!!");
+                }
+
+                System.out.println("\n Press any key to continue...");
+                scanner.nextLine();
+                scanner.nextLine();
+                clearScreen();
+                proceed = false;
+            }
+        }
+
+        proceed = false;
         System.out.print("\n");
 
-        System.out.print("Type the size of the array: ");
-        size = scanner.nextInt();
+        while (proceed != true) {
+            try {
+                System.out.print("Type the maximum value you want in the array: " + max + "\n");
+                System.out.print("Type the minimum value you want in the array: " + min + "\n");
+                System.out.print("Type the size of the array: ");
+                size = scanner.nextInt();
+                proceed = true;
+            } catch (Exception e) {
+                System.out.println("Size must be a number!!");
+                System.out.println("\n Press any key to continue...");
+                scanner.nextLine();
+                scanner.nextLine();
+                clearScreen();
+                proceed = false;
+            }
+        }
 
         System.out.print("\n\n Generating array...");
         arr = generateNumberArray(size, max, min);
@@ -111,12 +196,19 @@ public class App {
 
     public static int getUserOption(Scanner scanner) throws IOException {
         int tempOpt = 0;
+        showMainMenu();
         System.out.print("\nOption: ");
 
         try {
             tempOpt = scanner.nextInt();
-        } catch (Error e) {
-            System.out.println(e.getMessage());
+        } catch (Exception e) {
+            System.out.println("\nOption must be a number!");
+            System.out.println("\n Press any key to continue...");
+            scanner.nextLine();
+            scanner.nextLine();
+            clearScreen();
+            showMainMenu();
+            return getUserOption(scanner);
         }
 
         return tempOpt;
