@@ -188,11 +188,15 @@ public class App {
     }
 
     public static void showAllSortResults(long[][] times, Scanner scanner) {
-        String leftAlignFormat = "|%-15s | %-9d | %-9d | %-11d | %-12d | %-13d | %n";
+        String leftAlignFormat = "|%-15s | %-10d | %-10d | %-10d | %-10d | %-10d | %n";
 
-        System.out.format("+-------------------------------------------------------------------------------------+%n");
-        System.out.format("|Method          |   10000   |   100000  |   1000000   |   10000000   |   100000000   |%n");
-        System.out.format("+----------------|-----------|-----------|-------------|--------------|---------------+%n");
+        System.out.format("+---------------------------------------------------------------------------------+%n");
+        System.out.format("|Time is shown in Milliseconds                                                    |%n");
+        System.out.format("+---------------------------------------------------------------------------------+%n");
+        System.out.format("+    Results     |                          Size                                  |%n");
+        System.out.format("+----------------+----------------------------------------------------------------+%n");
+        System.out.format("|Method          |    10000   |    5000    |    10000   |    30000   |   100000   |%n");
+        System.out.format("+----------------+------------+------------+------------+------------+------------+%n");
 
         System.out.format(leftAlignFormat, "Bubble Sort", times[0][0], times[1][0], times[2][0], times[3][0],
                 times[4][0]);
@@ -201,7 +205,7 @@ public class App {
         System.out.format(leftAlignFormat, "Selection Sort", times[0][2], times[1][2], times[2][2], times[3][2],
                 times[4][2]);
 
-        System.out.format("+-------------------------------------------------------------------------------------+%n");
+        System.out.format("+---------------------------------------------------------------------------------+%n");
 
         System.out.println("\n\n");
         System.out.println("Press any key to continue...");
