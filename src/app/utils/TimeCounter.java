@@ -1,8 +1,8 @@
 package app.utils;
 
 public class TimeCounter {
-    long startTime;
-    long endTime;
+    private long startTime;
+    private long endTime;
 
     public void startCounter() {
         startTime = System.currentTimeMillis();
