@@ -13,40 +13,43 @@ import javax.swing.JTextArea;
 
 import app.view.TelaDados;
 
-public class Botoes implements ActionListener{
+public class Botoes implements ActionListener {
 
 	private String arqNome;
 	private JTextArea txtArea;
 
 	public Botoes(JTextArea txtArea) {
-		// TODO Auto-generated constructor stub
 		this.txtArea = txtArea;
 	}
-	
+
 	public void actionPerformed(ActionEvent arg) {
-		// TODO Auto-generated method stub
-		if(arg.getActionCommand().equals("ação1")){
-			try{
+		if (arg.getActionCommand().equals("aï¿½ï¿½o1")) {
+			try {
 				arqNome = "";
-				while(arqNome.equals("")){
-					arqNome = JOptionPane.showInputDialog(null, "Digite o caminho/nome do arquivo de texto que desejas criar: ", "Sarvar", JOptionPane.PLAIN_MESSAGE);
+				while (arqNome.equals("")) {
+					arqNome = JOptionPane.showInputDialog(null,
+							"Digite o caminho/nome do arquivo de texto que desejas criar: ", "Sarvar",
+							JOptionPane.PLAIN_MESSAGE);
 				}
-				if(arqNome != null){
+				if (arqNome != null) {
 					FileWriter arq = new FileWriter(arqNome);
 					PrintWriter gravarArq = new PrintWriter(arq);
 					gravarArq.printf(txtArea.getText());
 					arq.close();
 				}
-			}catch (Exception e) {
-				JOptionPane.showMessageDialog(null,"Erro ao salvar o arquivo: " + e.getMessage(),"Salvar", JOptionPane.ERROR_MESSAGE);
+			} catch (Exception e) {
+				JOptionPane.showMessageDialog(null, "Erro ao salvar o arquivo: " + e.getMessage(), "Salvar",
+						JOptionPane.ERROR_MESSAGE);
 			}
-		}else if(arg.getActionCommand().equals("ação2")){
-			try{
+		} else if (arg.getActionCommand().equals("aï¿½ï¿½o2")) {
+			try {
 				arqNome = "";
-				while(arqNome.equals("")){
-					arqNome = JOptionPane.showInputDialog(null, "Digite o caminho/nome do arquivo de texto que desejas criar: ", "Sarvar", JOptionPane.PLAIN_MESSAGE);
+				while (arqNome.equals("")) {
+					arqNome = JOptionPane.showInputDialog(null,
+							"Digite o caminho/nome do arquivo de texto que desejas criar: ", "Sarvar",
+							JOptionPane.PLAIN_MESSAGE);
 				}
-				if(arqNome != null){
+				if (arqNome != null) {
 					FileReader arq = new FileReader(arqNome);
 					BufferedReader lerArq = new BufferedReader(arq);
 					try {
@@ -54,15 +57,17 @@ public class Botoes implements ActionListener{
 						String linha = lerArq.readLine(); // le a primeira linha
 						while (linha != null) {
 							txtArea.setText(txtArea.getText() + linha + "\n");
-							linha = lerArq.readLine(); // passa para a proxima linha a cada verificação
+							linha = lerArq.readLine(); // passa para a proxima linha a cada verificaï¿½ï¿½o
 						}
 						arq.close();
 					} catch (IOException e) {
-						JOptionPane.showMessageDialog(TelaDados.umTelaDados(),"Erro ao abrir o arquivo: " + e.getMessage(),"Abrir", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(TelaDados.umTelaDados(),
+								"Erro ao abrir o arquivo: " + e.getMessage(), "Abrir", JOptionPane.ERROR_MESSAGE);
 					}
 				}
-			}catch (Exception e) {
-				JOptionPane.showMessageDialog(null,"Erro ao salvar o arquivo: " + e.getMessage(),"Salvar", JOptionPane.ERROR_MESSAGE);
+			} catch (Exception e) {
+				JOptionPane.showMessageDialog(null, "Erro ao salvar o arquivo: " + e.getMessage(), "Salvar",
+						JOptionPane.ERROR_MESSAGE);
 			}
 		}
 	}

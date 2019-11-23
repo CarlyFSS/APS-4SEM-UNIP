@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - AppView",
+            "request": "launch",
+            "mainClass": "app.AppView",
+            "projectName": "aps4sem"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - App",
             "request": "launch",
             "mainClass": "app.App"

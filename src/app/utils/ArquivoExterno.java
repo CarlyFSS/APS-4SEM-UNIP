@@ -60,16 +60,16 @@ public class ArquivoExterno {
 						arr[contador + i]= Integer.parseInt(l[i]);
 					}
 					contador += i;
-					linha = lerArq.readLine(); // passa para a proxima linha a cada verificação
+					linha = lerArq.readLine(); // passa para a proxima linha a cada verificaï¿½ï¿½o
 		      }
 		      arq.close();
 			} catch (IOException e) {
-				JOptionPane.showMessageDialog(TelaDados.umTelaDados(),"Erro durante a gravação do arquivo: " + e.getMessage(),"Gravar Dados", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(TelaDados.umTelaDados(),"Erro durante a gravaï¿½ï¿½o do arquivo: " + e.getMessage(),"Gravar Dados", JOptionPane.ERROR_MESSAGE);
 			}
 	    }
 	}
 	
-	//cria um vetor ou adiciona mais uma posição para alocar o proximo valor
+	//cria um vetor ou adiciona mais uma posiï¿½ï¿½o para alocar o proximo valor
 	private int[] aumentaArr(){
 		if(arr == null){
 			arr = new int[1];
@@ -84,7 +84,7 @@ public class ArquivoExterno {
 	}
 	
 	private String formasDeSplit(){
-		String[] opcoes = {"Espaço", "Virgula", "Cancelar"};
+		String[] opcoes = {"Espaï¿½o", "Virgula", "Cancelar"};
 		int opcao = JOptionPane.showOptionDialog(null, "Os dados estaram separados por?",
 				"Formato de leitura dos arquivos externos", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, opcoes, opcoes[0]);
 		switch (opcao) {
@@ -101,7 +101,7 @@ public class ArquivoExterno {
 		try {
 			linha = lerArq.readLine(); // le a primeira linha
 			local = linha.split(",");  // cria um identificador dos locais verificados
-			linha = lerArq.readLine(); // pula a primeira linha que contem o cabeçalho da tabela
+			linha = lerArq.readLine(); // pula a primeira linha que contem o cabeï¿½alho da tabela
 			while (linha != null) {
 				l = linha.split(",");
 				for (int i = 2; i < l.length; i++) {
@@ -112,12 +112,12 @@ public class ArquivoExterno {
 					listDados.add(new Dado(dado));
 					contador++;
 				}
-				linha = lerArq.readLine(); // passa para a proxima linha a cada verificação
+				linha = lerArq.readLine(); // passa para a proxima linha a cada verificaï¿½ï¿½o
 	      }
 	      arq.close();
 		} catch (IOException e) {
 			listDados = null;
-			JOptionPane.showMessageDialog(TelaDados.umTelaDados(),"Erro durante a gravação do arquivo: " + e.getMessage(),"Gravar Dados", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(TelaDados.umTelaDados(),"Erro durante a gravaï¿½ï¿½o do arquivo: " + e.getMessage(),"Gravar Dados", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 }

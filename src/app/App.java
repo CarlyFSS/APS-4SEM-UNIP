@@ -31,7 +31,8 @@ public class App {
 
         // ----------
 
-        // Main loop
+        // Main loop (Deprecated)
+
         while (option != 4) {
             option = getUserOption(scanner);
 
@@ -64,7 +65,7 @@ public class App {
                 break;
             case 2:
                 clearScreen();
-                //showSingleSortResult(arr, scanner);
+                // showSingleSortResult(arr, scanner);
 
                 System.out.println("Starting all sorts.");
                 times = runAllSortAndStoreTimes(arr1, arr2, arr3, arr4, arr5);
@@ -73,7 +74,7 @@ public class App {
                 break;
             case 3:
                 clearScreen();
-                //showArray(arr);
+                // showArray(arr);
 
                 showAllSortResults(times, scanner);
 
@@ -86,7 +87,8 @@ public class App {
                 break;
             }
         }
-        // End main loop
+
+        // End main loop (Deprecated)
     }
 
     // Functions
@@ -197,9 +199,12 @@ public class App {
         System.out.format("+----------------+----------------------------------------------------------------+%n");
         System.out.format("|Method          |    10000   |    5000    |    10000   |    30000   |   100000   |%n");
         System.out.format("+----------------+------------+------------+------------+------------+------------+%n");
-        System.out.format(leftAlignFormat, "Bubble Sort", times[0][0], times[1][0], times[2][0], times[3][0], times[4][0]);
-        System.out.format(leftAlignFormat, "Merge Sort", times[0][1], times[1][1], times[2][1], times[3][1], times[4][1]);
-        System.out.format(leftAlignFormat, "Selection Sort", times[0][2], times[1][2], times[2][2], times[3][2], times[4][2]);
+        System.out.format(leftAlignFormat, "Bubble Sort", times[0][0], times[1][0], times[2][0], times[3][0],
+                times[4][0]);
+        System.out.format(leftAlignFormat, "Merge Sort", times[0][1], times[1][1], times[2][1], times[3][1],
+                times[4][1]);
+        System.out.format(leftAlignFormat, "Selection Sort", times[0][2], times[1][2], times[2][2], times[3][2],
+                times[4][2]);
         System.out.format("+---------------------------------------------------------------------------------+%n");
         System.out.println("\n\n");
         System.out.println("Press any key to continue...");
@@ -221,7 +226,7 @@ public class App {
         TimeCounter timeCounter = new TimeCounter();
 
         timeCounter.startCounter();
-        //arr = SelectionSort.sort(arr);
+        // arr = SelectionSort.sort(arr);
         timeCounter.stopCounter();
 
         return timeCounter.calculateElapsedTimeInMillis();
@@ -231,7 +236,7 @@ public class App {
         TimeCounter timeCounter = new TimeCounter();
 
         timeCounter.startCounter();
-        //arr = MergeSort.sort(arr);
+        // arr = MergeSort.sort(arr);
         timeCounter.stopCounter();
 
         return timeCounter.calculateElapsedTimeInMillis();
